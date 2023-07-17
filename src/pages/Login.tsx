@@ -11,14 +11,10 @@ function Login() {
     const [username, setUsername] = useState('kminchelle')
     const [password, setPassword] = useState('0lelplR')
 
-    const [obj, setObj] = useState<Admin>(Object)
-
     const sendForm = (evt:FormEvent) =>{
         evt.preventDefault()
-        login(username,password).then(res=>{   
-            setObj(res.data)
-            console.log(obj.username)
-            sessionStorage.setItem('admin',obj.username)
+        login(username,password).then(res=>{          
+            sessionStorage.setItem('admin',res.data.username)
             navigate('/home')
         }).catch(err=>{
             alert("Username or Password Fail")

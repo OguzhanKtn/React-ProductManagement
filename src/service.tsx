@@ -1,5 +1,6 @@
 import axios from "axios";
 import { DummyProducts, Product} from "./model/DummyProducts";
+import { Admin } from "./model/Admin";
 
 const config = axios.create({
     baseURL : 'https://dummyjson.com/',
@@ -12,7 +13,7 @@ export const login = (username: string,password: string)=>{
         username : username,
         password : password
     }
-    return config.post('auth/login',sendObj)
+    return config.post<Admin>('auth/login',sendObj)
 }
 
 export const allProduct = () =>{
