@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import { useNavigate, useParams } from 'react-router-dom'
 import { singleProduct } from '../service'
 import { Product } from '../model/DummyProducts'
+import { Admin } from '../model/Admin'
 
 function Detail() {
     const params = useParams()
@@ -23,6 +24,22 @@ function Detail() {
       }
       
     }, [])
+
+    const [adm,setAdm] = useState<Admin>()
+
+    useEffect(() => {
+      const stSession = sessionStorage.getItem('admin')
+      var admin:Admin
+      if(stSession !== null){
+        admin = JSON.parse(stSession) as Admin
+        setAdm(admin)
+      }
+    }, [])
+    
+
+    const addBasket = () =>{
+      console.log('add basket')
+    }
       
   return (
     <>
@@ -36,6 +53,7 @@ function Detail() {
             <p>Price : {item.price}$</p>
             <p>Brand : {item.brand}</p>
             <p>Stock : {item.stock}</p>
+            <button onClick={addBasket} className='btn btn-danger'><i className="bi bi-cart3"></i> Add Basket</button>
           </div>
           <div className="col-sm-6">
             <img src={bigImage} className='img-fluid img-thumbnail' />
@@ -47,9 +65,7 @@ function Detail() {
               )}
             </div>
           </div>
-        </div>
-      
-      
+        </div>      
       </>
     }
     </> 

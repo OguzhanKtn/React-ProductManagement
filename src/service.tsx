@@ -13,7 +13,7 @@ export const login = (username: string,password: string)=>{
         username : username,
         password : password
     }
-    return config.post<Admin>('auth/login',sendObj)
+    return config.post('auth/login',sendObj)
 }
 
 export const allProduct = () =>{

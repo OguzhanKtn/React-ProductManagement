@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Admin } from "../model/Admin";
 
-function Navbar() {
+function Navbar(item: {admin:Admin}) {
 
   const navigate = useNavigate()
 
@@ -9,17 +10,7 @@ function Navbar() {
     sessionStorage.removeItem('admin')
     navigate('/')
   }
-  const username = sessionStorage.getItem('admin')
   
-
-   const [first, setfirst] = useState('')
-
-   useEffect(() => {
-    if(username)
-      setfirst(username)       
-   }, [])
-  
-
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -51,7 +42,7 @@ function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled">{first}</a>
+                <a className="nav-link disabled">{item.admin.firstName} {item.admin.lastName}</a>
               </li>
             </ul>
             <form className="d-flex" role="search">

@@ -1,8 +1,6 @@
 import React, { FormEvent, useState } from 'react'
 import { login } from '../service'
 import { useNavigate } from 'react-router-dom'
-import { Admin } from '../model/Admin'
-import { request } from 'http'
 
 function Login() {
 
@@ -13,8 +11,9 @@ function Login() {
 
     const sendForm = (evt:FormEvent) =>{
         evt.preventDefault()
-        login(username,password).then(res=>{          
-            sessionStorage.setItem('admin',res.data.username)
+        login(username,password).then(res=>{
+            const stData = JSON.stringify(res.data)          
+            sessionStorage.setItem('admin',stData)
             navigate('/home')
         }).catch(err=>{
             alert("Username or Password Fail")
