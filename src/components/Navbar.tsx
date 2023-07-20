@@ -6,6 +6,15 @@ function Navbar(item: {admin:Admin}) {
 
   const navigate = useNavigate()
 
+  useEffect(() => {
+    if(item.admin){
+
+    }else{
+      navigate('/')
+    }
+  }, [])
+  
+
   const logout = () =>{
     sessionStorage.removeItem('admin')
     navigate('/')
@@ -42,7 +51,10 @@ function Navbar(item: {admin:Admin}) {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled">{item.admin.firstName} {item.admin.lastName}</a>
+                <a className="nav-link disabled">{item.admin && item.admin.firstName} {item.admin && item.admin.lastName}</a>
+              </li>
+              <li className="nav-item">
+              <NavLink className="nav-link" to="/basket"><i className="bi bi-cart3"></i> Basket</NavLink>
               </li>
             </ul>
             <form className="d-flex" role="search">

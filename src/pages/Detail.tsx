@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar'
 import { useNavigate, useParams } from 'react-router-dom'
-import { singleProduct } from '../service'
+import { addCard, singleProduct } from '../service'
 import { Product } from '../model/DummyProducts'
 import { Admin } from '../model/Admin'
+import { toast } from 'react-toastify'
+import { decrypt } from '../util'
+import Basket from './Basket'
 
 function Detail() {
     const params = useParams()
@@ -31,14 +33,34 @@ function Detail() {
       const stSession = sessionStorage.getItem('admin')
       var admin:Admin
       if(stSession !== null){
-        admin = JSON.parse(stSession) as Admin
-        setAdm(admin)
+        try {
+          const plainText = decrypt(stSession)
+          admin = JSON.parse(plainText) as Admin
+          if(admin){
+            setAdm(admin)
+          }else{
+            navigate('/')
+          }
+          
+        } catch (error) {
+          sessionStorage.removeItem('admin')
+          navigate('/')
+        }
+        
       }
     }, [])
     
 
     const addBasket = () =>{
-      console.log('add basket')
+      addCard(adm!.id,id!).then(res =>{
+        const obj = res.data
+        if(obj){
+          toast.success("Add Basket Success!")
+        }
+        
+      }).catch(err => {
+        console.log(err.message)
+      })
     }
       
   return (
