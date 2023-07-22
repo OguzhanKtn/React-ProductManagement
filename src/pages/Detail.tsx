@@ -5,7 +5,7 @@ import { Product } from '../model/DummyProducts'
 import { Admin } from '../model/Admin'
 import { toast } from 'react-toastify'
 import { decrypt } from '../util'
-import Basket from './Basket'
+
 
 function Detail() {
     const params = useParams()
@@ -14,7 +14,7 @@ function Detail() {
 
    const [item, setItem] = useState<Product>()
    const [bigImage, setBigImage] = useState('')
-   
+
     useEffect(() => {
       if(id){
         singleProduct(id).then(res =>{
@@ -23,10 +23,9 @@ function Detail() {
         }).catch(err =>{
           navigate('/home')
         })
-      }
-      
+      }    
     }, [])
-
+ 
     const [adm,setAdm] = useState<Admin>()
 
     useEffect(() => {
@@ -52,15 +51,32 @@ function Detail() {
     
 
     const addBasket = () =>{
-      addCard(adm!.id,id!).then(res =>{
+      addCard(adm!.id,id!).then(res =>{   
         const obj = res.data
         if(obj){
-          toast.success("Add Basket Success!")
+          toast.success("Add Basket Success!")         
         }
-        
       }).catch(err => {
         console.log(err.message)
       })
+      addLocal(id!)
+    }
+
+    const addLocal = (id : string) =>{
+        const stObj = localStorage.getItem('basket')
+        if(stObj){
+          // added before
+          var stArr:string[] = []
+          stArr = JSON.parse(stObj) as string[]
+          stArr.push(id)
+          const st = JSON.stringify(stArr)
+          localStorage.setItem("basket",st)
+        }else{
+          const arr:string[] = []
+          arr.push(id)
+          const saveStr = JSON.stringify(arr)
+          localStorage.setItem("basket",saveStr) 
+        }
     }
       
   return (

@@ -6,8 +6,8 @@ import { decrypt } from './util'
 
 function Control(props:{item:JSX.Element}) {
 
-  const navigate = useNavigate()
- const stSession = sessionStorage.getItem('admin')
+const navigate = useNavigate()
+const stSession = sessionStorage.getItem('admin')
 
  var admin:Admin
 
