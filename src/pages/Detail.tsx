@@ -65,7 +65,6 @@ function Detail() {
     const addLocal = (id : string) =>{
         const stObj = localStorage.getItem('basket')
         if(stObj){
-          // added before
           var stArr:string[] = []
           stArr = JSON.parse(stObj) as string[]
           stArr.push(id)
