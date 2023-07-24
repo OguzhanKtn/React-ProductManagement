@@ -19,8 +19,8 @@
 
 # Images :
 <p>
-  <img src="https://github.com/OguzhanKtn/React-ProductManagement/blob/main/images/Login.png" width="200">
-  <img src="https://github.com/OguzhanKtn/React-ProductManagement/blob/main/images/home.png" width="200">
-  <img src="https://github.com/OguzhanKtn/React-ProductManagement/blob/main/images/detail.png" width="200">
-  <img src="https://github.com/OguzhanKtn/React-ProductManagement/blob/main/images/basket.png" width="200">
+  <img src="https://github.com/OguzhanKtn/React-ProductManagement/blob/main/images/Login.png" width="500" style="max-width:100%;"> <br/>
+  <img src="https://github.com/OguzhanKtn/React-ProductManagement/blob/main/images/home.png" width="500" style="max-width:100%;"><br/>
+  <img src="https://github.com/OguzhanKtn/React-ProductManagement/blob/main/images/detail.png" width="500" style="max-width:100%;"><br/>
+  <img src="https://github.com/OguzhanKtn/React-ProductManagement/blob/main/images/Basket.png" width="700" style="max-width:100%;">
 </p>
